@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinel Prep Tracker - Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .profile-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .profile-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+        }
+
+        .profile-header-center {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .large-avatar {
+            width: 100px;
+            height: 100px;
+            background-color: var(--accent-primary);
+            color: var(--bg-main);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.2);
+        }
+
+        .security-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-family: var(--font-mono);
+            background-color: rgba(0, 255, 102, 0.1);
+            color: var(--accent-primary);
+            border: 1px solid var(--accent-primary);
+        }
+
+        .info-group {
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+
+        .settings-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .settings-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .settings-group label {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .settings-group input,
+        .settings-group textarea {
+            padding: 12px;
+            background-color: #0c0c0e;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            resize: vertical;
+        }
+
+        .settings-group input:focus,
+        .settings-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <!-- Sidebar content same as others -->
+        <div class="sidebar-header">
+            <h2>SENTINEL<span class="highlight">_HQ</span></h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home nav-icon"></i> Dashboard</a></li>
+            <li><a href="schedule.html"><i class="fas fa-calendar-check nav-icon"></i> Study Schedule</a></li>
+            <li><a href="programming.html"><i class="fas fa-code nav-icon"></i> Programming</a></li>
+            <li><a href="tests.html"><i class="fas fa-brain nav-icon"></i> Tests & Quizzes</a></li>
+            <li><a href="reports.html"><i class="fas fa-chart-line nav-icon"></i> Reports</a></li>
+            <li><a href="profile.html" class="active"><i class="fas fa-user-shield nav-icon"></i> Profile</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <button id="logoutBtn"><i class="fas fa-sign-out-alt nav-icon"></i> Disconnect</button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="top-bar">
+            <h1 class="page-title">Operative Profile</h1>
+            <div class="user-info">
+                <span id="userEmailDisplay">loading...</span>
+                <div class="user-avatar" id="userAvatar">O</div>
+            </div>
+        </div>
+
+        <div class="profile-container">
+            <!-- Left Column: Identity -->
+            <div class="profile-card">
+                <div class="profile-header-center">
+                    <div class="large-avatar" id="profileAvatar">O</div>
+                    <div class="security-badge"><i class="fas fa-check-circle"></i> VERIFIED CLEARANCE</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Operative ID (UID)</div>
+                    <div class="info-value" id="profileUid" style="font-family: var(--font-mono); font-size: 12px;">
+                        loading...</div>
+                </div>
+                <div class="info-group">
+                    <div class="info-label">Registered Email</div>
+                    <div class="info-value" id="profileEmail">loading...</div>
+                </div>
+                <div class="info-group" style="border-bottom: none;">
+                    <button class="btn"
+                        style="background-color: transparent; border: 1px solid var(--accent-red); color: var(--accent-red); margin-top: 10px;"
+                        id="profileLogoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> FORCE DISCONNECT
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Column: Settings -->
+            <div class="profile-card">
+                <h3 style="margin-bottom: 20px; font-family: var(--font-mono); color: var(--accent-primary);">Mission
+                    Parameters</h3>
+
+                <div id="settingsAlert" class="alert hidden"></div>
+
+                <form id="profileForm" class="settings-form">
+                    <div class="settings-group">
+                        <label for="displayName">&gt; ALIAS (DISPLAY NAME)</label>
+                        <input type="text" id="displayName" placeholder="Enter your display name">
+                    </div>
+
+                    <div class="settings-group">
+                        <label for="careerGoal">&gt; TARGET_ROLE</label>
+                        <input type="text" id="careerGoal" placeholder="e.g., SDE-1 at FAANG, Cybersecurity Analyst">
+                    </div>
+
+                    <div class="settings-group">
+                        <label for="studyTarget">&gt; DAILY_STUDY_TARGET (HOURS)</label>
+                        <input type="number" id="studyTarget" min="1" max="16" placeholder="8">
+                    </div>
+
+                    <div class="settings-group">
+                        <label for="bio">&gt; OPERATIVE_BIO</label>
+                        <textarea id="bio" rows="4"
+                            placeholder="Optional brief about your current prep journey..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn primary-btn" id="saveProfileBtn">UPDATE PARAMETERS</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="app.js"></script>
+    <script type="module" src="profile.js"></script>
+</body>
+
+</html>

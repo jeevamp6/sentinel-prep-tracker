@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinel Prep Tracker - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>SENTINEL<span class="highlight">_HQ</span></h2>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html" class="active"><i class="fas fa-home nav-icon"></i> Dashboard</a></li>
+            <li><a href="schedule.html"><i class="fas fa-calendar-check nav-icon"></i> Study Schedule</a></li>
+            <li><a href="programming.html"><i class="fas fa-code nav-icon"></i> Programming</a></li>
+            <li><a href="tests.html"><i class="fas fa-brain nav-icon"></i> Tests & Quizzes</a></li>
+            <li><a href="reports.html"><i class="fas fa-chart-line nav-icon"></i> Reports</a></li>
+            <li><a href="profile.html"><i class="fas fa-user-shield nav-icon"></i> Profile</a></li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <button id="logoutBtn"><i class="fas fa-sign-out-alt nav-icon"></i> Disconnect</button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="top-bar">
+            <h1 class="page-title">Dashboard Overview</h1>
+            <div class="user-info">
+                <span id="userEmailDisplay">loading...</span>
+                <div class="user-avatar" id="userAvatar">O</div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Daily Study Progress -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Daily Operations</h3>
+                    <i class="fas fa-tasks card-icon"></i>
+                </div>
+                <div class="card-content">
+                    <div class="stat-value" id="dashboardTaskStats">0/0</div>
+                    <p class="stat-label">Tasks Completed</p>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="dashboardTaskProgress" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Programming Tracker Summary -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">LeetCode Stats</h3>
+                    <i class="fas fa-code card-icon"></i>
+                </div>
+                <div class="card-content">
+                    <div class="stat-value" id="dashboardLcTotal">---</div>
+                    <p class="stat-label">Total Problems Solved</p>
+                    <div style="display: flex; justify-content: space-between; margin-top: 15px; font-size: 14px;">
+                        <span style="color: var(--accent-primary);">Easy: <span id="dashLcEasy">0</span></span>
+                        <span style="color: #ffb84d;">Med: <span id="dashLcMed">0</span></span>
+                        <span style="color: var(--accent-red);">Hard: <span id="dashLcHard">0</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Readiness Score -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Placement Readiness</h3>
+                    <i class="fas fa-crosshairs card-icon"></i>
+                </div>
+                <div class="card-content" style="text-align: center;">
+                    <div class="stat-value" style="font-size: 48px;" id="dashboardScore">--%</div>
+                    <p class="stat-label" style="margin-top: 5px;">Overall Rating</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <!-- We need auth check on every page! -->
+    <script type="module" src="app.js"></script>
+    <script type="module" src="dashboard.js"></script>
+</body>
+
+</html>

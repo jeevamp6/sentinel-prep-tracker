@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinel Admin - Restricted Access</title>
+    <link rel="stylesheet" href="styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .admin-theme {
+            --accent-primary: var(--accent-red);
+        }
+
+        .auth-container {
+            border: 1px solid var(--accent-red);
+            box-shadow: 0 0 20px rgba(255, 60, 60, 0.2);
+        }
+
+        .highlight-admin {
+            color: var(--accent-red);
+        }
+    </style>
+</head>
+
+<body class="auth-body admin-theme">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h2>SENTINEL<span class="highlight-admin">_ADMIN</span></h2>
+                <p style="color: var(--accent-red);">Restricted Terminal Access</p>
+            </div>
+
+            <div id="alertBox" class="alert hidden"></div>
+
+            <form id="adminLoginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="adminIdCard" style="color: var(--accent-red);">&gt; SECURITY_ID_CARD</label>
+                    <input type="text" id="adminIdCard" required placeholder="e.g., 89SC78"
+                        style="border-color: rgba(255,60,60,0.3); text-transform: uppercase;">
+                </div>
+
+                <div class="form-group">
+                    <label for="adminPassphrase" style="color: var(--accent-red);">&gt; SECRET_PASSPHRASE</label>
+                    <input type="password" id="adminPassphrase" required placeholder="REQUIRED FOR OVERRIDE"
+                        style="border-color: rgba(255,60,60,0.3);">
+                </div>
+
+                <button type="submit" id="loginBtn" class="btn primary-btn"
+                    style="background-color: var(--accent-red); color: white;">INITIATE OVERRIDE [ENTER]</button>
+            </form>
+
+            <div class="auth-footer"
+                style="margin-top: 25px; border-top: 1px solid rgba(255,60,60,0.2); padding-top: 15px;">
+                <p><a href="login.html" style="color: var(--text-secondary);">← Return to Standard Access</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts loaded as module -->
+    <script type="module" src="admin-login.js"></script>
+</body>
+
+</html>

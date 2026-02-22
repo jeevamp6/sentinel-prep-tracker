@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinel Admin Panel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .admin-warning {
+            background-color: rgba(255, 60, 60, 0.1);
+            border-left: 4px solid var(--accent-red);
+            padding: 15px;
+            margin-bottom: 25px;
+            color: var(--text-primary);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2 style="color: var(--accent-red);">ADMIN<span class="highlight">_PANEL</span></h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home nav-icon"></i> User Dashboard</a></li>
+            <li><a href="schedule.html"><i class="fas fa-calendar-check nav-icon"></i> Study Schedule</a></li>
+            <li><a href="programming.html"><i class="fas fa-code nav-icon"></i> Programming Tracker</a></li>
+            <li><a href="tests.html"><i class="fas fa-brain nav-icon"></i> Tests & Quizzes</a></li>
+            <li><a href="reports.html"><i class="fas fa-chart-line nav-icon"></i> Analytics Reports</a></li>
+            <li><a href="profile.html"><i class="fas fa-user nav-icon"></i> Operative Profile</a></li>
+            <li style="margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border-color);">
+                <a href="admin.html" class="active" style="color: var(--accent-red);">
+                    <i class="fas fa-shield-alt nav-icon"></i> Command Center
+                </a>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <button id="logoutBtn"><i class="fas fa-sign-out-alt nav-icon"></i> Disconnect</button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="top-bar">
+            <h1 class="page-title">Command Center</h1>
+            <div class="user-info">
+                <span id="userEmailDisplay">loading...</span>
+                <div class="user-avatar" id="userAvatar" style="background-color: var(--accent-red); color: white;">A
+                </div>
+            </div>
+        </div>
+
+        <div id="adminAccessDenied" class="hidden">
+            <div class="card" style="text-align: center; padding: 50px;">
+                <i class="fas fa-lock" style="font-size: 48px; color: var(--accent-red); margin-bottom: 20px;"></i>
+                <h2 style="font-family: var(--font-mono); color: var(--accent-red);">ACCESS DENIED</h2>
+                <p style="color: var(--text-secondary); margin-top: 10px;">Your operative clearance is insufficient for
+                    this sector.</p>
+                <button class="btn primary-btn" onclick="window.location.href='index.html'"
+                    style="width: 200px; margin-top: 30px;">Return to Dashboard</button>
+            </div>
+        </div>
+
+        <div id="adminContent" class="hidden">
+            <div class="admin-warning">
+                <i class="fas fa-exclamation-triangle" style="color: var(--accent-red); margin-right: 10px;"></i>
+                You are currently operating with Level 5 Admin Privileges. Changes made here affect all users globally.
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">AI Assessment Engine Configuration</h3>
+                    <i class="fas fa-robot card-icon"></i>
+                </div>
+                <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 14px;">
+                    Provide the global Google Gemini API Key. This key will be used by all active operatives to generate
+                    dynamic aptitude and technical assessments.
+                </p>
+
+                <form id="adminKeyForm">
+                    <div style="display: flex; gap: 15px;">
+                        <input type="password" id="globalGeminiKey"
+                            placeholder="Enter Global Gemini API Key (e.g., AIza...)"
+                            style="flex: 1; padding: 12px; background-color: #0c0c0e; border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-primary);"
+                            required>
+                        <button type="submit" class="btn primary-btn" id="saveGlobalKeyBtn"
+                            style="flex: 0 0 auto; width: auto; padding: 0 20px; background-color: var(--accent-red); color: white;">
+                            <i class="fas fa-save"></i> Save Global Key
+                        </button>
+                    </div>
+                </form>
+                <div id="adminAlert" class="alert hidden" style="margin-top: 15px;"></div>
+            </div>
+
+            <!-- SYSTEM HEALTH WIDGETS -->
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                <div class="card" style="text-align: center;">
+                    <i class="fas fa-brain"
+                        style="font-size: 24px; color: var(--accent-primary); margin-bottom: 10px;"></i>
+                    <h4 style="margin-bottom: 5px;">AI Subsystem</h4>
+                    <span id="aiHealthStatus"
+                        style="font-family: var(--font-mono); color: var(--accent-primary);">ONLINE (GEMINI)</span>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <i class="fas fa-code" style="font-size: 24px; color: #ffb84d; margin-bottom: 10px;"></i>
+                    <h4 style="margin-bottom: 5px;">Dev Sync API</h4>
+                    <span id="syncHealthStatus" style="font-family: var(--font-mono); color: #ffb84d;">ACTIVE</span>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <i class="fas fa-users" style="font-size: 24px; color: #00d2ff; margin-bottom: 10px;"></i>
+                    <h4 style="margin-bottom: 5px;">Active Operatives</h4>
+                    <span id="activeSessionsCount" style="font-family: var(--font-mono); color: #00d2ff;">1</span>
+                </div>
+            </div>
+
+            <!-- LIVE SOC TERMINAL -->
+            <div class="card" style="margin-bottom: 30px;">
+                <div class="card-header">
+                    <h3 class="card-title">Live Activity Operations Logs</h3>
+                    <i class="fas fa-terminal card-icon" style="color: var(--accent-primary);"></i>
+                </div>
+                <div id="socTerminal"
+                    style="background-color: #050505; border: 1px solid #333; height: 300px; overflow-y: auto; padding: 15px; font-family: var(--font-mono); font-size: 13px; color: var(--accent-primary); border-radius: 4px; line-height: 1.5;">
+                    <!-- Logs injected via JS -->
+                    <div>[SYSTEM] Interceptor modules loaded. Broadcasting...</div>
+                </div>
+            </div>
+
+            <!-- NETWORK TRAFFIC MONITOR -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">GlobNet Traffic Interceptor</h3>
+                    <i class="fas fa-network-wired card-icon" style="color: #ffb84d;"></i>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table
+                        style="width: 100%; text-align: left; border-collapse: collapse; font-family: var(--font-mono); font-size: 13px;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid var(--border-color); color: var(--text-secondary);">
+                                <th style="padding: 10px;">TIMESTAMP</th>
+                                <th style="padding: 10px;">METHOD</th>
+                                <th style="padding: 10px;">ENDPOINT</th>
+                                <th style="padding: 10px;">STATUS</th>
+                                <th style="padding: 10px;">LATENCY</th>
+                            </tr>
+                        </thead>
+                        <tbody id="networkTableBody">
+                            <!-- Network logs injected via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <script type="module" src="app.js"></script>
+        <script type="module" src="admin.js"></script>
+</body>
+
+</html>

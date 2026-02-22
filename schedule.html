@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinel Prep Tracker - Schedule</title>
+    <link rel="stylesheet" href="styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .task-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .task-item {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .task-item:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .task-item.completed {
+            opacity: 0.6;
+            border-color: var(--accent-secondary);
+        }
+
+        .task-item.completed .task-text {
+            text-decoration: line-through;
+            color: var(--text-secondary);
+        }
+
+        .task-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .task-category {
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background-color: rgba(0, 255, 102, 0.1);
+            color: var(--accent-primary);
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+        }
+
+        .task-actions button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 5px;
+            margin-left: 10px;
+            transition: var(--transition);
+        }
+
+        .task-actions button:hover {
+            color: var(--text-primary);
+        }
+
+        .task-actions .btn-complete:hover {
+            color: var(--accent-primary);
+        }
+
+        .task-actions .btn-delete:hover {
+            color: var(--accent-red);
+        }
+
+        /* Form inline */
+        .task-form {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .task-form input,
+        .task-form select {
+            flex: 1;
+            padding: 12px;
+            background-color: #0c0c0e;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-family: var(--font-main);
+        }
+
+        .task-form input:focus,
+        .task-form select:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>SENTINEL<span class="highlight">_HQ</span></h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home nav-icon"></i> Dashboard</a></li>
+            <li><a href="schedule.html" class="active"><i class="fas fa-calendar-check nav-icon"></i> Study Schedule</a>
+            </li>
+            <li><a href="programming.html"><i class="fas fa-code nav-icon"></i> Programming</a></li>
+            <li><a href="tests.html"><i class="fas fa-brain nav-icon"></i> Tests & Quizzes</a></li>
+            <li><a href="reports.html"><i class="fas fa-chart-line nav-icon"></i> Reports</a></li>
+            <li><a href="profile.html"><i class="fas fa-user-shield nav-icon"></i> Profile</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <button id="logoutBtn"><i class="fas fa-sign-out-alt nav-icon"></i> Disconnect</button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="top-bar">
+            <h1 class="page-title">Study Operations Tracker</h1>
+            <div class="user-info">
+                <span id="userEmailDisplay">loading...</span>
+                <div class="user-avatar" id="userAvatar">O</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Assign New Task</h3>
+            </div>
+
+            <form id="taskForm" class="task-form">
+                <input type="text" id="taskTitle" placeholder="Task description (e.g., Complete Arrays in DSA)"
+                    required>
+                <select id="taskCategory" required>
+                    <option value="" disabled selected>Select Category</option>
+                    <option value="Aptitude">Aptitude</option>
+                    <option value="DSA">DSA</option>
+                    <option value="Core CS">Core CS</option>
+                    <option value="Cybersecurity">Cybersecurity</option>
+                    <option value="Revision">Revision</option>
+                </select>
+                <button type="submit" class="btn primary-btn" style="flex: 0 0 auto; width: auto; padding: 0 20px;">Add
+                    Task</button>
+            </form>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3 class="card-title" style="border: none; margin: 0; padding: 0;">Active Tasks</h3>
+                <span id="taskProgressText" style="color: var(--text-secondary); font-size: 14px;">0/0 Completed</span>
+            </div>
+
+            <div class="progress-container" style="margin-bottom: 20px;">
+                <div class="progress-bar" id="taskProgressBar" style="width: 0%;"></div>
+            </div>
+
+            <ul class="task-list" id="taskList">
+                <!-- Tasks injected by schedule.js -->
+                <li style="text-align: center; color: var(--text-secondary); padding: 20px;">Decrypting task database...
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <script type="module" src="app.js"></script>
+    <script type="module" src="schedule.js"></script>
+</body>
+
+</html>
