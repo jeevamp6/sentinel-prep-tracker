@@ -5,7 +5,7 @@ async function testGemini() {
     const prompt = `Generate exactly 5 multiple choice questions about ${subject} for an entry-level software engineering job interview. Return a JSON array containing objects. Each object must have: "q" (the question string), "options" (array of 4 string options), and "a" (integer 0-3 representing the index of the correct option).`;
 
     try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${globalApiKey}`, {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${globalApiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
