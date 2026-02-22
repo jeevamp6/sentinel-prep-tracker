@@ -144,8 +144,9 @@ a:hover {
 
 .form-group label {
     display: block;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
+    font-family: var(--font-mono);
     color: var(--text-secondary);
     margin-bottom: 8px;
 }
