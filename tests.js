@@ -138,7 +138,7 @@ async function startTest(subject) {
 
     // Fallback to the provided key if admin settings aren't configured in Firestore yet
     if (!globalApiKey) {
-        globalApiKey = "AIzaSyAqTmiN-0blOHDYREAEI2EJ02NnjqQsLbU";
+        globalApiKey = gemini_api_key1;
     }
 
     if (globalApiKey) {

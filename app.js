@@ -7,7 +7,7 @@ import { logger } from './logger.js';
 
 // IMPORTANT: Replace this config with your actual Firebase Project config!
 const firebaseConfig = {
-    apiKey: "AIzaSyDEYgmraKVoWauib9NHm1W1eCSSquzXLBU",
+    apiKey: gemini_api_key2,
     authDomain: "sentinel-prep-tracker-bu-4bf0a.firebaseapp.com",
     projectId: "sentinel-prep-tracker-bu-4bf0a",
     storageBucket: "sentinel-prep-tracker-bu-4bf0a.firebasestorage.app",
