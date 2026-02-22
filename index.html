@@ -53,9 +53,9 @@
                     <i class="fas fa-tasks card-icon"></i>
                 </div>
                 <div class="card-content">
-                    <div class="stat-value" id="dashboardTaskStats">0/0</div>
+                    <div class="stat-value skeleton" id="dashboardTaskStats">0/0</div>
                     <p class="stat-label">Tasks Completed</p>
-                    <div class="progress-container">
+                    <div class="progress-container skeleton">
                         <div class="progress-bar" id="dashboardTaskProgress" style="width: 0%;"></div>
                     </div>
                 </div>
@@ -68,12 +68,12 @@
                     <i class="fas fa-code card-icon"></i>
                 </div>
                 <div class="card-content">
-                    <div class="stat-value" id="dashboardLcTotal">---</div>
+                    <div class="stat-value skeleton" id="dashboardLcTotal">---</div>
                     <p class="stat-label">Total Problems Solved</p>
-                    <div style="display: flex; justify-content: space-between; margin-top: 15px; font-size: 14px;">
-                        <span style="color: var(--accent-primary);">Easy: <span id="dashLcEasy">0</span></span>
-                        <span style="color: #ffb84d;">Med: <span id="dashLcMed">0</span></span>
-                        <span style="color: var(--accent-red);">Hard: <span id="dashLcHard">0</span></span>
+                    <div style="display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap;">
+                        <span class="badge badge-easy">Easy <span id="dashLcEasy">0</span></span>
+                        <span class="badge badge-medium">Med <span id="dashLcMed">0</span></span>
+                        <span class="badge badge-hard">Hard <span id="dashLcHard">0</span></span>
                     </div>
                 </div>
             </div>
@@ -85,7 +85,8 @@
                     <i class="fas fa-crosshairs card-icon"></i>
                 </div>
                 <div class="card-content" style="text-align: center;">
-                    <div class="stat-value" style="font-size: 48px;" id="dashboardScore">--%</div>
+                    <div class="stat-value skeleton" style="font-size: 48px; justify-content: center;"
+                        id="dashboardScore">--%</div>
                     <p class="stat-label" style="margin-top: 5px;">Overall Rating</p>
                 </div>
             </div>

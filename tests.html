@@ -20,16 +20,17 @@
         .test-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
+            border-radius: var(--radius-md);
+            padding: 24px;
             text-align: center;
             cursor: pointer;
-            transition: var(--transition);
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
         }
 
         .test-card:hover {
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 15px rgba(0, 255, 102, 0.1);
+            transform: translateY(-2px);
+            border-color: var(--border-color);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
         }
 
         .test-icon {
@@ -53,8 +54,9 @@
         .quiz-container {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: var(--radius-md);
             padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .quiz-header {
@@ -86,25 +88,28 @@
         }
 
         .option-btn {
-            background-color: #0c0c0e;
+            background-color: var(--bg-secondary);
             border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 15px;
+            border-radius: var(--radius-sm);
+            padding: 16px 20px;
             text-align: left;
             color: var(--text-primary);
             font-family: var(--font-main);
+            font-size: 15px;
             cursor: pointer;
-            transition: var(--transition);
+            transition: all var(--transition-fast);
         }
 
         .option-btn:hover {
             border-color: var(--accent-primary);
-            background-color: rgba(0, 255, 102, 0.05);
+            background-color: rgba(255, 161, 22, 0.05);
+            transform: translateX(4px);
         }
 
         .option-btn.selected {
-            background-color: rgba(0, 255, 102, 0.1);
+            background-color: rgba(255, 161, 22, 0.1);
             border-color: var(--accent-primary);
+            box-shadow: 0 0 0 1px var(--accent-primary);
         }
 
         .result-container {
@@ -157,8 +162,8 @@
         </div>
 
         <div id="systemNotificationBanner"
-            style="display: none; background-color: rgba(255, 184, 77, 0.1); border-left: 4px solid #ffb84d; padding: 15px; margin-bottom: 20px; color: var(--text-primary); border-radius: 4px; transition: var(--transition);">
-            <i class="fas fa-exclamation-triangle" style="color: #ffb84d; margin-right: 10px;"></i>
+            style="display: none; background-color: rgba(255, 192, 30, 0.1); border-left: 4px solid var(--accent-yellow); padding: 15px; margin-bottom: 20px; color: var(--text-primary); border-radius: var(--radius-sm); transition: opacity var(--transition-normal);">
+            <i class="fas fa-exclamation-triangle" style="color: var(--accent-yellow); margin-right: 10px;"></i>
             <span id="systemNotificationText">Offline Question Bank Mode Active. Providing local assessments.</span>
         </div>
 

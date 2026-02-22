@@ -30,6 +30,7 @@ function initDashboard(userId) {
                 const dashLcTotal = document.getElementById('dashboardLcTotal');
                 if (dashLcTotal) {
                     dashLcTotal.innerText = leetcodeData.total || '0';
+                    dashLcTotal.classList.remove('skeleton');
                     document.getElementById('dashLcEasy').innerText = leetcodeData.easy || '0';
                     document.getElementById('dashLcMed').innerText = leetcodeData.medium || '0';
                     document.getElementById('dashLcHard').innerText = leetcodeData.hard || '0';
@@ -62,8 +63,14 @@ function initDashboard(userId) {
         const dashProgressText = document.getElementById('dashboardTaskStats');
         const dashProgressBar = document.getElementById('dashboardTaskProgress');
 
-        if (dashProgressText) dashProgressText.innerText = `${completedCount}/${totalCount}`;
-        if (dashProgressBar) dashProgressBar.style.width = `${percentage}%`;
+        if (dashProgressText) {
+            dashProgressText.innerText = `${completedCount}/${totalCount}`;
+            dashProgressText.classList.remove('skeleton');
+        }
+        if (dashProgressBar) {
+            dashProgressBar.style.width = `${percentage}%`;
+            dashProgressBar.parentElement.classList.remove('skeleton');
+        }
 
         calculateReadiness();
     });
@@ -92,7 +99,8 @@ function initDashboard(userId) {
         const dashboardScore = document.getElementById('dashboardScore');
         if (dashboardScore) {
             dashboardScore.innerText = `${readiness}%`;
-            dashboardScore.style.color = readiness >= 70 ? 'var(--accent-primary)' : (readiness >= 40 ? '#ffb84d' : 'var(--accent-red)');
+            dashboardScore.classList.remove('skeleton');
+            dashboardScore.style.color = readiness >= 70 ? 'var(--accent-green)' : (readiness >= 40 ? 'var(--accent-yellow)' : 'var(--accent-red)');
         }
     }
 }

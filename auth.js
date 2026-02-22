@@ -21,6 +21,10 @@ function showAlert(message, type = 'error') {
     alertBox.textContent = message;
     alertBox.className = `alert alert-${type}`;
     alertBox.classList.remove('hidden');
+
+    setTimeout(() => {
+        hideAlert();
+    }, 4000);
 }
 
 function hideAlert() {
