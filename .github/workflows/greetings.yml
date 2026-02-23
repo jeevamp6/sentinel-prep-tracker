@@ -1,0 +1,40 @@
+name: Greetings
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Greet First-Time Contributors
+        uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: |
+            👋 Welcome to **Sentinel Prep Tracker**!
+
+            Thank you for opening your first issue 🚀  
+            This project is a cybersecurity-focused dashboard with security monitoring, role-based access, and secure architecture.
+
+            🔐 Please ensure:
+            - No sensitive data is shared
+            - Security issues are reported responsibly
+            - Follow the SECURITY.md guidelines
+
+            We appreciate your contribution! 🛡️
+
+          pr-message: |
+            🎉 Thank you for your first Pull Request to **Sentinel Prep Tracker**!
+
+            Your contribution helps improve this cybersecurity dashboard project.
+            
+            🧠 Before merging:
+            - Ensure secure coding practices
+            - Avoid exposing API keys or secrets
+            - Follow repository security policies
+            
+            Maintainers will review your PR soon. 🔍
