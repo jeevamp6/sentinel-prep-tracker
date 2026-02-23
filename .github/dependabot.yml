@@ -1,0 +1,19 @@
+version: 2
+
+updates:
+  # GitHub Actions security updates
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  # NPM (for future JS libraries like Chart.js, Firebase, etc.)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+
+  # Security updates only (important for cybersecurity projects)
+    allow:
+      - dependency-type: "all"
