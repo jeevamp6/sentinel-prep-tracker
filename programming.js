@@ -36,11 +36,27 @@ function initProgramming(userId) {
 
             // Clean the username input (in case they pasted a full URL like https://leetcode.com/u/username/)
             let username = usernameInput;
-            if (usernameInput.includes('leetcode.com')) {
-                const parts = usernameInput.split('/');
-                username = parts[parts.length - 1] === "" ? parts[parts.length - 2] : parts[parts.length - 1];
+            try {
+                const url = new URL(usernameInput);
+                const allowedHosts = new Set([
+                    'leetcode.com',
+                    'www.leetcode.com',
+                    'leetcode.cn',
+                    'www.leetcode.cn'
+                ]);
+
+                if (allowedHosts.has(url.hostname)) {
+                    const pathSegments = url.pathname.split('/').filter(Boolean);
+                    if (pathSegments.length > 0) {
+                        // Prefer the last non-empty path segment as username
+                        username = pathSegments[pathSegments.length - 1];
+                    }
+                }
+            } catch (e) {
+                // If usernameInput is not a valid URL, fall back to treating it as a plain username
             }
-            // Fallback for simple trailing slashes
+
+            // Remove any stray slashes from the derived username
             username = username.replace(/\//g, '');
 
             const btn = document.getElementById('lcSyncBtn');
